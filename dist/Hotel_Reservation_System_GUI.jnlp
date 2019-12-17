@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Hotel_Reservation_System_GUI.jnlp">
+  <information>
+    <title>Hotel_Reservation_System_GUI</title>
+    <vendor>Yossan</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="Hotel_Reservation_System_GUI.jar" size="92030" download="eager" />
+    <jar href="lib/DateChooser.jar" size="514658" download="eager" />
+    <jar href="lib/jcalendar-1.1.4.jar" size="68310" download="eager" />
+    <jar href="lib/jcalendar-1.4.jar" size="165052" download="eager" />
+    <jar href="lib/mysql-connector-java-8.0.18.jar" size="2330539" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Hotel_Reservation_System_GUI" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="hotel_reservation_system_gui.HotelReservationSystem"  name="Hotel_Reservation_System_GUI" />
+  <update check="always"/>
+</jnlp>
