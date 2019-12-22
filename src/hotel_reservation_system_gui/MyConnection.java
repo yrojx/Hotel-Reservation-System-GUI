@@ -18,7 +18,7 @@ public class MyConnection {
         Connection conn = null;
         
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/oop_project","root","");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/oop_project?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","");
         } catch(SQLException e) {
             System.out.println(e);
         }

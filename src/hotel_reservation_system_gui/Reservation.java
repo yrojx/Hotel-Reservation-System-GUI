@@ -23,12 +23,7 @@ public class Reservation {
     
     public Reservation(int noRoom, String type, float price, String paymentMethod, String id, String name, String phone, int receptionistId) {
         room = new Room(noRoom, type, price);
-        
-        if(paymentMethod.equalsIgnoreCase("cash")) {
-            payment = new Cash(price);
-        } else {
-            payment = new Card(price);
-        }
+        payment = new PaymentFactory().getPayment(paymentMethod, price);
         customer = new Customer(id, name, phone, false);
         this.receptionistId = receptionistId;
     }

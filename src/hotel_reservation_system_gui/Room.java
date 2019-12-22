@@ -132,7 +132,7 @@ public class Room {
     public boolean deleteRoom() {
         MyConnection myConnection = new MyConnection(); 
         PreparedStatement ps;
-        String sql = "DELETE FROM receptionist WHERE no = ?";
+        String sql = "DELETE FROM room WHERE no = ?";
         try {
             ps = myConnection.createConnection().prepareStatement(sql);
             ps.setInt(1, roomNo);

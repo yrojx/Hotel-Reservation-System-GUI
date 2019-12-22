@@ -266,7 +266,7 @@ public class MenuReservationForm extends javax.swing.JFrame {
         MyConnection conn = new MyConnection();
         PreparedStatement ps;
         ResultSet rst;
-        String sql = "SELECT room.* FROM room LEFT JOIN booked_room ON room.no = booked_room.room_no WHERE booked_room.room_no IS NULL OR (booked_room.day_start NOT BETWEEN ? AND ?) AND (booked_room.day_end NOT BETWEEN ? AND ?) ORDER BY no ASC";
+        String sql = "SELECT room.* FROM room LEFT JOIN booked_room ON room.no = booked_room.room_no WHERE booked_room.room_no IS NULL OR (booked_room.day_start NOT BETWEEN ? AND ?) AND (booked_room.day_end NOT BETWEEN ? AND ?) AND (? NOT BETWEEN booked_room.day_start AND booked_room.day_end) AND (? NOT BETWEEN booked_room.day_start AND booked_room.day_end) ORDER BY no ASC";
         
         try {
             ps = conn.createConnection().prepareStatement(sql);
@@ -274,6 +274,8 @@ public class MenuReservationForm extends javax.swing.JFrame {
             ps.setString(2, dayEnd);
             ps.setString(3, dayStart);
             ps.setString(4, dayEnd);
+            ps.setString(5, dayStart);
+            ps.setString(6, dayEnd);
             rst = ps.executeQuery();
             DefaultTableModel tableModel = (DefaultTableModel) jTableAvailableRoom.getModel();
             Object[] row;
@@ -294,15 +296,16 @@ public class MenuReservationForm extends javax.swing.JFrame {
     private void jButtonCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckActionPerformed
         dayStart =  dateChooserDayStart.getText();
         dayEnd = dateChooserDayEnd.getText();
-        SimpleDateFormat dtStart = new SimpleDateFormat("dd/MM/yy");
-        SimpleDateFormat dtEnd = new SimpleDateFormat("dd/MM/yy");
-        SimpleDateFormat sdformat = new SimpleDateFormat("dd/MM/yy");
-        String timeStamp = new SimpleDateFormat("dd/MM/yy").format(Calendar.getInstance().getTime());
+        SimpleDateFormat dtStart = new SimpleDateFormat("MM/dd/yy");
+        SimpleDateFormat dtEnd = new SimpleDateFormat("MM/dd/yy");
+        SimpleDateFormat sdformat = new SimpleDateFormat("MM/dd/yy");
+        String timeStamp = new SimpleDateFormat("MM/dd/yy").format(Calendar.getInstance().getTime());
         try {
             Date dateStart = dtStart.parse(dayStart);
             Date dateEnd = dtEnd.parse(dayEnd);
-            Date d3 = sdformat.parse(timeStamp);
+            Date d3 = sdformat.parse(timeStamp);;
             if(dateStart.compareTo(dateEnd) < 0 && dateStart.compareTo(d3) >= 0) {
+                
                 SimpleDateFormat dtStart1 = new SimpleDateFormat("yyyy-MM-dd");
                 SimpleDateFormat dtEnd1 = new SimpleDateFormat("yyyy-MM-dd");
                 dayStart = dtStart1.format(dateStart);
